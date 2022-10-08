@@ -24,5 +24,17 @@ typedef long long ll;
 using P = pair<int, int>;
 
 int main() {
+    cout << "問題2.2.2" << endl;
+    cout << "sqrt(841.0) = " << sqrt(841.0) << endl;
+    cout << "29^2 = " << pow(29.0, 2.0) << endl;
+    cout << "sqrt(1024.0) = " << sqrt(1024.0) << endl;
+    cout << "4^5 = " << pow(4.0, 5.0) << endl;
+
+    cout << "問題2.2.3" << endl;
+    cout << "13 & 14 = " << (13 & 14) << endl;
+    cout << "13 | 14 = " << (13 | 14) << endl;
+    cout << "13 ^ 14 = " << (13 ^ 14) << endl;
+    cout << "8 | 4 | 2 | 1 = " << (((8 | 4) | 2) | 1) << endl;
+
     return 0;
 }

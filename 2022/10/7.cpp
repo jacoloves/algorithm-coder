@@ -24,5 +24,16 @@ typedef long long ll;
 using P = pair<int, int>;
 
 int main() {
+    int n;
+    cin >> n;
+
+    ll sum = 0;
+    for (int i=0; i<n; i++) {
+        int in_num;
+        cin >> in_num;
+        sum += in_num;
+    }
+
+    cout << sum % 100 << endl;
     return 0;
 }

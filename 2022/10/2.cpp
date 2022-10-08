@@ -37,14 +37,16 @@ int main() {
         }
     }
 
-    // for (int i=0; i<n; i++) {
-    //     for (int j=0; j<(sizeof(vv[i]) / sizeof(vv[i][0])); j++) {
-    //         cout << vv[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
+    vector<int> q1(q);
+    vector<int> q2(q);
 
-    // cout << vv[0][1] << endl;
+    for (int i=0; i<q; i++) {
+        cin >> q1[i] >> q2[i];
+    }
 
+    for (int i=0; i<q; i++) {
+        cout << vv[q1[i]-1][q2[i]-1] << endl;
+    }
+    
     return 0;
 }
