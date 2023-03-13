@@ -24,8 +24,19 @@ typedef long long ll;
 #define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 using P = pair<int, int>;
 
-int N, M, A[100009], B[100009];
-vector<int> G[100009];
+int N, M, A[200009], B[200009];
+vector<int> G[200009];
+int color[200009];
+
+void dfs(int pos)
+{
+    for (int i : G[pos]) {
+        if (color[i] == 0) {
+            color[i] = 3 - color[pos];
+            dfs(i);
+        }
+    }
+}
 
 int main()
 {
@@ -36,13 +47,23 @@ int main()
         G[B[i]].push_back(A[i]);
     }
 
+    for (int i = 1; i <= N; i++) color[i] = 0;
     for (int i = 1; i <= N; i++) {
-        cout << i << ": {";
-        for (int j = 0; j < (int)G[i].size(); j++) {
-            if (j >= 1) cout << ",";
-            cout << G[i][j];
+        if (color[i] == 0) {
+            color[i] = 1;
+            dfs(i);
         }
-        cout << "}" << endl;
     }
+
+    bool Answer = true;
+    for (int i = 1; i <= M; i++) {
+        if (color[A[i]] == color[B[i]]) Answer = false;
+    }
+
+    if (Answer == true)
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
+
     return 0;
 }

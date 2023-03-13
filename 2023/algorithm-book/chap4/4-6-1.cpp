@@ -24,25 +24,14 @@ typedef long long ll;
 #define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 using P = pair<int, int>;
 
-int N, M, A[100009], B[100009];
-vector<int> G[100009];
+int N, a[10000009];
 
 int main()
 {
-    cin >> N >> M;
-    for (int i = 1; i <= M; i++) {
-        cin >> A[i] >> B[i];
-        G[A[i]].push_back(B[i]);
-        G[B[i]].push_back(A[i]);
-    }
-
-    for (int i = 1; i <= N; i++) {
-        cout << i << ": {";
-        for (int j = 0; j < (int)G[i].size(); j++) {
-            if (j >= 1) cout << ",";
-            cout << G[i][j];
-        }
-        cout << "}" << endl;
-    }
+    cin >> N;
+    a[1] = 1;
+    a[2] = 1;
+    for (int i = 3; i <= N; i++) a[i] = a[i - 1] + a[i - 2];
+    cout << a[N] % 1000000007 << endl;
     return 0;
 }

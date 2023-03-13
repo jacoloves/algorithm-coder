@@ -25,6 +25,7 @@ typedef long long ll;
 using P = pair<int, int>;
 
 int N, M, A[100009], B[100009];
+int dist[100009];
 vector<int> G[100009];
 
 int main()
@@ -36,13 +37,23 @@ int main()
         G[B[i]].push_back(A[i]);
     }
 
-    for (int i = 1; i <= N; i++) {
-        cout << i << ": {";
-        for (int j = 0; j < (int)G[i].size(); j++) {
-            if (j >= 1) cout << ",";
-            cout << G[i][j];
+    for (int i = 1; i <= N; i++) dist[i] = -1;
+    queue<int> Q;
+    Q.push(1);
+    dist[1] = 0;
+
+    while (!Q.empty()) {
+        int pos = Q.front();
+        Q.pop();
+        for (int i = 0; i < (int)G[pos].size(); i++) {
+            int nex = G[pos][i];
+            if (dist[nex] == -1) {
+                dist[nex] = dist[pos] + 1;
+                Q.push(nex);
+            }
         }
-        cout << "}" << endl;
     }
+
+    for (int i = 1; i <= N; i++) cout << dist[i] << endl;
     return 0;
 }

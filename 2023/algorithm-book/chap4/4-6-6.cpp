@@ -24,25 +24,37 @@ typedef long long ll;
 #define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 using P = pair<int, int>;
 
-int N, M, A[100009], B[100009];
-vector<int> G[100009];
+const ll mod = 1000000007;
+ll X, Y;
+ll fact[200009];
+
+ll modpow(ll a, ll b, ll m)
+{
+    ll p = a, Answer = 1;
+    for (int i = 0; i < 30; i++) {
+        if ((b & (1 << i)) != 0) {
+            Answer *= p;
+            Answer %= m;
+        }
+        p *= p;
+        p %= m;
+    }
+    return Answer;
+}
+
+ll Division(ll a, ll b, ll m) { return (a * modpow(b, m - 2, m)) % m; }
+
+ll ncr(int n, int r)
+{
+    return Division(fact[n], fact[r] * fact[n - r] % mod, mod);
+}
 
 int main()
 {
-    cin >> N >> M;
-    for (int i = 1; i <= M; i++) {
-        cin >> A[i] >> B[i];
-        G[A[i]].push_back(B[i]);
-        G[B[i]].push_back(A[i]);
-    }
+    fact[0] = 1;
+    for (int i = 1; i <= 200000; i++) fact[i] = 1LL * i * fact[i - 1] % mod;
 
-    for (int i = 1; i <= N; i++) {
-        cout << i << ": {";
-        for (int j = 0; j < (int)G[i].size(); j++) {
-            if (j >= 1) cout << ",";
-            cout << G[i][j];
-        }
-        cout << "}" << endl;
-    }
+    cin >> X >> Y;
+    cout << ncr(X + Y, Y) << endl;
     return 0;
 }

@@ -24,25 +24,15 @@ typedef long long ll;
 #define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 using P = pair<int, int>;
 
-int N, M, A[100009], B[100009];
-vector<int> G[100009];
+const ll mod = 1000000007;
+ll a, b, Answer = 1;
 
 int main()
 {
-    cin >> N >> M;
-    for (int i = 1; i <= M; i++) {
-        cin >> A[i] >> B[i];
-        G[A[i]].push_back(B[i]);
-        G[B[i]].push_back(A[i]);
+    cin >> a >> b;
+    for (int i = 1; i <= b; i++) {
+        Answer = (Answer * a) % mod;
     }
-
-    for (int i = 1; i <= N; i++) {
-        cout << i << ": {";
-        for (int j = 0; j < (int)G[i].size(); j++) {
-            if (j >= 1) cout << ",";
-            cout << G[i][j];
-        }
-        cout << "}" << endl;
-    }
+    cout << Answer << endl;
     return 0;
 }
