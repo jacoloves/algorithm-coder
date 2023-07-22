@@ -23,9 +23,10 @@ typedef long long ll;
 #define rep(i,n) for (int i = 0; i < (int)(n); ++i)
 using P = pair<int, int>;
 
-int cnt = 0;
+int cnt = 0, m=0;
+vector<int> G;
 
-void insertionSort(vector<int>& array, int n, int g) {
+void insertionSort(vector<int> &array, int n, int g) {
     int v,j;
     for(int i=g; i<n; i++) {
         v = array[i];
@@ -39,56 +40,51 @@ void insertionSort(vector<int>& array, int n, int g) {
     }
 }
 
-void shellSort(vector<int> array, int n) {
-    int m = 0;
-    int s = 1;
-
-    while ((n/s) > 0) {
-        s *= 2;
-        m++;
+void shellSort(vector<int> &array, int n) {
+    for (int i=1; i<=n; ++m) {
+        G.push_back(i);
+        i = i * 3 + 1;
     }
 
-    int G[20];
+    reverse(G.begin(), G.end());
 
-    for(int k=0, t=1; k<m; ++k) {
-        G[k] = n/t;
-        t *= 2;
-    }
-
-    for(int i=0; i<n; ++i) {
+    for (int i=0; i<m; ++i) {
         insertionSort(array, n, G[i]);
-    }
-
-    cout << m << endl;
-
-    for(int i=0; i<m; ++i) {
-        if(i != m-1) {
-            cout << G[i];
-        } else {
-            cout << G[i] << endl;
-        }
-    }
-
-    cout << cnt << endl;
-
-    for(int i=0; i<n; ++i) {
-        cout << array[i] << endl;
     }
 }
 
 int main() {
-    int n;
-    cin >> n;
-
+    int n,t;
     vector<int> array;
 
-    for(int i=0; i<n; ++i) {
-        int a;
-        cin >> a;
-        array.push_back(a);
+    cin >> n;
+    for (int i=0; i<n; ++i) {
+        cin >> t;
+        array.push_back(t);
     }
 
     shellSort(array, n);
+
+    cout << m << endl;
+
+    for (int i=0; i<m; ++i) {
+        cout << G[i];
+        if (i == m - 1) {
+            cout << endl;
+        } else {
+            cout << " ";
+        }
+    }
+
+    cout << cnt << endl;
+    for (int i=0; i<n; ++i) {
+        cout << array[i];
+        if (i == n - 1) {
+            cout << endl;
+        } else {
+            cout << " ";
+        }
+    }
 
     return 0;
 }
