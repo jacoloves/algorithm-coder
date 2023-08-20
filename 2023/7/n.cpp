@@ -24,5 +24,20 @@ typedef long long ll;
 using P = pair<int, int>;
 
 int main() {
+    int n;
+    cin >> n;
+    vector<ll> s(n);
+    rep(i, n) cin >> s[i];
+    int q;
+    cin >> q;
+    vector<ll> t(q);
+    rep(i, q) cin >> t[i];
+
+    int ans = 0;
+    rep(i, q) {
+        if (find(s.begin(), s.end(), t[i]) != s.end()) ans++;
+    }
+
+    cout << ans << endl;
     return 0;
 }

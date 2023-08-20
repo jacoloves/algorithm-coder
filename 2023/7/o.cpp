@@ -23,6 +23,37 @@ typedef long long ll;
 #define rep(i,n) for (int i = 0; i < (int)(n); ++i)
 using P = pair<int, int>;
 
+bool binary_search(vector<ll> s, ll key) {
+    int left = 0;
+    int right = s.size();
+    while (left < right) {
+        int mid = (left + right) / 2;
+        if (s[mid] == key) return true;
+        else if (s[mid] > key) right = mid;
+        else left = mid + 1;
+    }
+    return false;
+}
+
 int main() {
+    int n;
+    cin >> n;
+    vector<ll> s(n);
+    rep(i, n) cin >> s[i];
+    int q;
+    cin >> q;
+    vector<ll> t(q);
+    rep(i, q) cin >> t[i];
+
+    int ans = 0;
+
+    unique(s.begin(), s.end());
+
+    rep(i, q) {
+        if (binary_search(s, t[i])) ans++;
+    }
+
+    cout << ans << endl;
+
     return 0;
 }

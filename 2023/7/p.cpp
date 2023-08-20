@@ -23,6 +23,42 @@ typedef long long ll;
 #define rep(i,n) for (int i = 0; i < (int)(n); ++i)
 using P = pair<int, int>;
 
+ll counter(string &s) {
+    int n = s.size();
+    ll bits = 0;
+    for (int i = 0; i < n; i++) {
+        ll d;
+        switch(s[i]) {
+            case 'A': d = 1; break;
+            case 'C': d = 2; break;
+            case 'G': d = 3; break;
+            case 'T': d = 4; break;
+        }
+        bits |= d << (i * 3);
+    }
+    return bits;
+}
+
 int main() {
+    int n;
+    cin >> n;
+
+    set<ll> dict;
+
+    for (int i = 0; i < n; ++i) {
+        string op, s;
+        cin >> op >> s;
+
+        ll bits = counter(s);
+        if (op == "insert") {
+            dict.insert(bits);
+        } else {
+            if (dict.find(bits) != dict.end()) {
+                cout << "yes" << endl;
+            } else {
+                cout << "no" << endl;
+            }
+        }
+    }
     return 0;
 }
